@@ -1,15 +1,13 @@
 package com.erkutaras.showcaseview;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Parcelable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,13 +77,9 @@ public final class ShowcaseManager {
     }
 
     private boolean getSystemUiVisibility() {
-        Window window = ((Activity) context).getWindow();
+        Window window = ((AppCompatActivity) context).getWindow();
         View decorView = window.getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return decorView.getSystemUiVisibility() == View.VISIBLE;
-        }
-        return (window.getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                == WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        return decorView.getSystemUiVisibility() == View.VISIBLE;
     }
 
     public static final class Builder {
@@ -105,6 +99,7 @@ public final class ShowcaseManager {
         private int alphaBackground;
         private int colorFocusArea;
         private boolean isDevelopMode;
+        private int marginFocusArea;
 
         public Builder() {
             showcaseModelList = new ArrayList<>();
@@ -185,6 +180,11 @@ public final class ShowcaseManager {
             return this;
         }
 
+        public Builder marginFocusArea(int marginFocusArea) {
+            this.marginFocusArea = marginFocusArea;
+            return this;
+        }
+
         public Builder add() {
             this.showcaseModelList.add(createShowcaseModel());
             return this;
@@ -202,7 +202,7 @@ public final class ShowcaseManager {
             view.getGlobalVisibleRect(viewPositionRect);
             float circleCenterX = getCircleCenterX(viewPositionRect);
             float circleCenterY = getCircleCenterY(viewPositionRect);
-            float circleCenterRadius = calculateRadius();
+            float circleCenterRadius = calculateRadius(marginFocusArea);
 
             return new ShowcaseModel.Builder()
                     .descriptionImageRes(descriptionImageRes)
@@ -229,17 +229,17 @@ public final class ShowcaseManager {
 
         private float getCircleCenterY(Rect viewPositionRect) {
             return viewPositionRect.top
-                    + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2);
+                    + (view.getHeight() / 2);
         }
 
         /**
          * @return finds out smallest radius of a circle that contains target view
          */
-        private float calculateRadius() {
+        private float calculateRadius(int marginFocusArea) {
             float x = view.getWidth() / 2;
             float y = view.getHeight() / 2;
             float radius = (float) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-            return radius + ShowcaseUtils.convertDpToPx(INNER_MARGIN_OF_FOCUS_AREA_ON_DP);
+            return radius + ShowcaseUtils.convertDpToPx(marginFocusArea);
         }
     }
 }

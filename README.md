@@ -1,6 +1,9 @@
 # Android ShowcaseView
 [![](https://jitpack.io/v/erkutaras/ShowcaseView.svg)](https://jitpack.io/#erkutaras/ShowcaseView)
+[![](https://img.shields.io/badge/Android%20Arsenal-ShowcaseView-brightgreen.svg)](https://android-arsenal.com/details/1/7438)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+<img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/Screenshot_1535489717.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/Screenshot_1535489745.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/Screenshot_1535489756.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/Screenshot_1535489775.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/Screenshot_1535489794.png" width="170">
 
 ShowcaseView is a simple-use library for Android to display new feature or whatever to the users.
 
@@ -25,19 +28,10 @@ allprojects {
 **Step 2.** Add the library dependency to your project build.gradle:
 ```
 dependencies {
-    implementation 'com.github.erkutaras:ShowcaseView:1.0.5'
+    implementation 'com.github.erkutaras:ShowcaseView:1.2.0'
 }
 ```
 
-## AndroidManifest
-
-**Step 3.** Add ShowcaseActivity and its' style to your AndroidManifest.xml:
-```
-<!-- to display showcaseview, this activity and its' style must be added -->
-<activity
-    android:name="com.erkutaras.showcaseview.ShowcaseActivity"
-    android:theme="@style/ShowcaseTransparentTheme"/>
-```
 
 ## Usage
 
@@ -60,42 +54,30 @@ ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
 To display showcaseview, `ShowcaseManager.Builder` is mandatory.
 
 ### Mandatory
-
-`builder.context(Context)` - to start new activity
-
-`builder.key(String)` - to decide this showcase is displayed or not
-
-`builder.view(View)` - showcase will be displayed for this view
-
-`builder.descriptionTitle(String)` - view title
-
-`builder.descriptionText(String)` - short description of view's purpose
-
-`builder.add()` - adding the new showcase and can be called more than one to display multiple showcaseview
-
-`builder.build()` - prepare the focus area(s)
-
-`builder.show()` - display showcaseview
+| Usage         | Description | 
+| ------------- |-------------| 
+| `builder.context(Context)`        | to start new activity             |
+| `builder.key(String)` | to decide this showcase is displayed or not|
+| `builder.view(View)` |  showcase will be displayed for this view| 
+| `builder.descriptionTitle(String)` |  view title| 
+| `builder.descriptionText(String)` |  short description of view's purpose| 
+| `builder.add()` |  adding the new showcase and can be called more than one to display multiple showcaseview| 
+| `builder.build()` |  prepare the focus area(s)| 
+| `builder.show()` |  display showcaseview| 
 
 ### Optinal
-
-`builder.developerMode(boolean)` - when you test your code, showcaseview will be displayed always if this field is true
-
-`builder.descriptionImageRes(int)` - display and set image which is located above of title
-
-`builder.buttonText(String)` - display and set text of button
-
-`builder.alphaBackground(int)` - set alpha of background color
-
-`builder.colorBackground(int)` - set color of background
-
-`builder.colorFocusArea(int)` - set color of focus area
-
-`builder.colorDescText(int)` - set color of description text
-
-`builder.colorButtonText(int)` - set color of button text
-
-`builder.colorButtonBackground(int)` - set color of button background
+| Usage         | Description | 
+| ------------- |-------------| 
+| `builder.developerMode(boolean)` |  when you test your code, showcaseview will be displayed always if this field is true| 
+| `builder.descriptionImageRes(int)` |  display and set image which is located above of title| 
+| `builder.buttonText(String)` |  display and set text of button| 
+| `builder.alphaBackground(int)` |  set alpha of background color| 
+| `builder.colorBackground(int)` |  set color of background| 
+| `builder.colorFocusArea(int)` |  set color of focus area| 
+| `builder.colorDescText(int)` |  set color of description text| 
+| `builder.colorButtonText(int)` |  set color of button text| 
+| `builder.colorButtonBackground(int)` |  set color of button background| 
+| `builder.marginFocusArea(intInDp)` |  set margin of focus area| 
 
 ## Issues
 
@@ -110,7 +92,7 @@ Patches and new features are encouraged, and may be submitted by [forking this p
 
 # License
 
-    Copyright 2018 erkutaras
+    Copyright 2018-2019 erkutaras
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
